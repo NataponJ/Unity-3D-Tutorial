@@ -1,0 +1,4 @@
+repository "3d-first-game@unity_3BA878C3A9F54B95430B@cloud"
+  path "/"
+    br "/main"
+    co "/main"
