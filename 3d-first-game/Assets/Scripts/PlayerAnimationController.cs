@@ -21,23 +21,23 @@ public class PlayerAnimationController : MonoBehaviour
         bool isWaliking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
         bool forwardPressed = Input.GetKey("w");
-        //bool backPressed = Input.GetKey("s");
-        //bool leftPressed = Input.GetKey("a");
-        //bool rightPressed = Input.GetKey("d");
-        //bool movePressed = (forwardPressed || backPressed || leftPressed || rightPressed);
+        bool backPressed = Input.GetKey("s");
+        bool leftPressed = Input.GetKey("a");
+        bool rightPressed = Input.GetKey("d");
+        bool isMoving = (forwardPressed || backPressed || leftPressed || rightPressed);
         bool runPressed = Input.GetKey("left shift");
-        if (!isWaliking && forwardPressed)
+        if (!isWaliking && isMoving)
         {
             animator.SetBool(isWalkingHash, true);
         }
-        if (isWaliking && !forwardPressed)
+        if (isWaliking && !isMoving)
         {
             animator.SetBool(isWalkingHash, false);
         }
-        if (!isRunning && (runPressed && forwardPressed)) {
+        if (!isRunning && (runPressed && isMoving)) {
             animator.SetBool(isRunningHash, true);
         }
-        if (isRunning && (!runPressed || !forwardPressed))
+        if (isRunning && (!runPressed || !isMoving))
         {
             animator.SetBool(isRunningHash, false);
         }

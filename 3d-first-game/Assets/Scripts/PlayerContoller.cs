@@ -14,14 +14,14 @@ public class PlayerContoller : MonoBehaviour
 
     // Speed at which the player moves.
     public float speed = 0;
-    float sprint = 0;
+    public float sprint = 0;
+    public float sneak = 0;
 
     // Start is called before the first frame update.
     void Start()
     {
         // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
-        sprint = speed + 5;
     }
 
     // This function is called when a move input is detected.
@@ -38,11 +38,19 @@ public class PlayerContoller : MonoBehaviour
     // FixedUpdate is called once per fixed frame-rate frame.
     private void FixedUpdate()
     {
-        bool isSprint = Input.GetKey("left shift");
+        bool sprintPressed = Input.GetKey("left shift");
+        bool sneakPressed = Input.GetKey("left ctrl");
         // Create a 3D movement vector using the X and Y inputs.
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        float new_speed = isSprint ? sprint : speed;
+        float moveSpeed = speed;
+        if (sprintPressed && !sneakPressed)
+        {
+            moveSpeed = sprint + speed;
+        } else if (!sprintPressed && sneakPressed)
+        {
+            moveSpeed = speed - sneak;
+        }
         // Apply force to the Rigidbody to move the player.
-        rb.AddForce(movement * new_speed);
+        rb.AddForce(movement * moveSpeed);
     }
 }
