@@ -11,6 +11,8 @@ public class PlayerContoller : MonoBehaviour
     // Movement along X and Y axes.
     private float movementX;
     private float movementY;
+    public Transform player;
+    private float defaultPosition;
 
     // Speed at which the player moves.
     public float speed = 0;
@@ -22,6 +24,7 @@ public class PlayerContoller : MonoBehaviour
     {
         // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
+        defaultPosition = player.position.y;
     }
 
     // This function is called when a move input is detected.
@@ -40,6 +43,7 @@ public class PlayerContoller : MonoBehaviour
     {
         bool sprintPressed = Input.GetKey("left shift");
         bool sneakPressed = Input.GetKey("left ctrl");
+        bool jumpPressed = Input.GetKey("space");
         // Create a 3D movement vector using the X and Y inputs.
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         float moveSpeed = speed;
@@ -49,6 +53,11 @@ public class PlayerContoller : MonoBehaviour
         } else if (!sprintPressed && sneakPressed)
         {
             moveSpeed = speed - sneak;
+        } //  && player.position.y <= 0.1f
+        if (jumpPressed && player.position.y <= 0.1f)
+        {
+            Vector3 jumpMovement = new Vector3(movementX, 3.0f, movementY);
+            rb.AddForce(jumpMovement * 10000);
         }
         // Apply force to the Rigidbody to move the player.
         rb.AddForce(movement * moveSpeed);
