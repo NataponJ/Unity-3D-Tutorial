@@ -8,24 +8,24 @@ public class PlayerAnimationController : MonoBehaviour
     int isWalkingHash;
     int isRunningHash;
     int isIdleJumpHash;
-    int isJumpHash;
-    // Start is called before the first frame update
+    //int isJumpHash;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         isIdleJumpHash = Animator.StringToHash("isIdleJump");
-        isJumpHash = Animator.StringToHash("isJump");
+        //isJumpHash = Animator.StringToHash("isJump");
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
         bool isWaliking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
         bool isIdleJump = animator.GetBool(isIdleJumpHash);
-        bool isJump = animator.GetBool(isJumpHash);
+        //bool isJump = animator.GetBool(isJumpHash);
 
         bool forwardPressed = Input.GetKey("w");
         bool backPressed = Input.GetKey("s");
@@ -33,7 +33,7 @@ public class PlayerAnimationController : MonoBehaviour
         bool rightPressed = Input.GetKey("d");
         bool movingPressed = (forwardPressed || backPressed || leftPressed || rightPressed);
         bool runPressed = Input.GetKey("left shift");
-        bool jumpPressed = Input.GetKey("space");
+        //bool jumpPressed = Input.GetKey("space");
 
         if (!isWaliking && movingPressed)
         {
@@ -43,19 +43,6 @@ public class PlayerAnimationController : MonoBehaviour
         {
             animator.SetBool(isWalkingHash, false);
         }
-
-        if (!isIdleJump && jumpPressed)
-        {
-            animator.SetBool(isIdleJumpHash, true);
-        }
-        if (isIdleJump && !jumpPressed)
-        {
-            animator.SetBool(isIdleJumpHash, false);
-        }
-        //if (isWaliking && !movingPressed && isIdleJump)
-        //{
-        //    animator.SetBool(isWalkingHash, false);
-        //}
 
         if (!isRunning && (runPressed && movingPressed)) {
             animator.SetBool(isRunningHash, true);

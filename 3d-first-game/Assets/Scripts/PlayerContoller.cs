@@ -43,7 +43,6 @@ public class PlayerContoller : MonoBehaviour
     {
         bool sprintPressed = Input.GetKey("left shift");
         bool sneakPressed = Input.GetKey("left ctrl");
-        bool jumpPressed = Input.GetKey("space");
         // Create a 3D movement vector using the X and Y inputs.
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         float moveSpeed = speed;
@@ -53,11 +52,6 @@ public class PlayerContoller : MonoBehaviour
         } else if (!sprintPressed && sneakPressed)
         {
             moveSpeed = speed - sneak;
-        } //  && player.position.y <= 0.1f
-        if (jumpPressed && player.position.y <= 0.1f)
-        {
-            Vector3 jumpMovement = new Vector3(movementX, 3.0f, movementY);
-            rb.AddForce(jumpMovement * 10000);
         }
         // Apply force to the Rigidbody to move the player.
         rb.AddForce(movement * moveSpeed);
