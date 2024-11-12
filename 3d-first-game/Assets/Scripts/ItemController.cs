@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
+    public SO_Item item;
+    public int amount = 1;
     private float rotateSpeed = 100f;
 
-    void Update()
+    public void SetAmount(int newAmount)
     {
-        transform.Rotate(0f, rotateSpeed * Time.deltaTime, 0f);
+        amount = newAmount;
+    }
+
+    public void RandomAmount(int newAmount)
+    {
+        amount = Random.Range(0, item.maxStack);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
