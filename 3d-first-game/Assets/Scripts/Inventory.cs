@@ -28,7 +28,31 @@ public class Inventory : MonoBehaviour
         {
             Transform slot = Instantiate(slotPrefab, inventoryPanel);
             InventorySlot invSlot = slot.GetComponent<InventorySlot>();
+
+            inventorySlots[i] = invSlot;
+            invSlot.inventory = this;
+            invSlot.SetSlot(EMPTY_ITEM, 0);
         }
     }
+
+    public InventorySlot IsEmptySlotLeft(SO_Item newItam = null, InventorySlot invSlot = null)
+    {
+        InventorySlot emptySlot = null;
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            if (slot == invSlot)
+            {
+                continue;
+            } else if (slot.item == newItam && slot.stack == slot.item.maxStack)
+            {
+                return slot;
+            } else if (slot.item == EMPTY_ITEM && emptySlot == null)
+            {
+                emptySlot = slot;
+            }
+        }
+        return emptySlot;
+    }
+
     #endregion
 }
