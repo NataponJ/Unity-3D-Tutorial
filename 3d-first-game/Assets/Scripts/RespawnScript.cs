@@ -4,21 +4,12 @@ using UnityEngine;
 
 public class RespawnScript : MonoBehaviour
 {
-    public Transform obj;
-    private Transform positionOriginal;
-    // Start is called before the first frame update
-    void Start()
+    private float threshold = -10.0f;
+    private void FixedUpdate()
     {
-        positionOriginal = obj;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (obj.position.y < -10f)
+        if (transform.position.y < threshold)
         {
-            obj.position = new Vector3(positionOriginal.position.x, positionOriginal.position.y, positionOriginal.position.z);
-            Physics.autoSyncTransforms = true;
+            transform.position = new Vector3(0.0f, 0.0f, -7.0f);
         }
     }
 }
