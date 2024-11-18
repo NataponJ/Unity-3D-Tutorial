@@ -213,7 +213,7 @@ MonoBehaviour:
   inventory: {fileID: 0}
   item: {fileID: 0}
   stack: 0
-  itemName: {fileID: 3051103027962296717}
+  textMeshPro: {fileID: 0}
 --- !u!1 &9155943693430542484
 GameObject:
   m_ObjectHideFlags: 0
