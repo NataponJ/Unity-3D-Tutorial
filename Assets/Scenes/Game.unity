@@ -1381,7 +1381,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34b0895dfc863f742aa5075a4e691859,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.413
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34b0895dfc863f742aa5075a4e691859,
         type: 3}
@@ -1484,6 +1484,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2020656602}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 34b0895dfc863f742aa5075a4e691859,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020656605}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 34b0895dfc863f742aa5075a4e691859,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020656604}
   m_SourcePrefab: {fileID: 100100000, guid: 34b0895dfc863f742aa5075a4e691859, type: 3}
 --- !u!1 &2020656596 stripped
 GameObject:
@@ -1551,7 +1559,7 @@ Animator:
   m_GameObject: {fileID: 2020656596}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0308cf4e83cf517488b60af58b290fe0, type: 3}
-  m_Controller: {fileID: 9100000, guid: cbd1db45c75e5b948a5befe9ecb80421, type: 2}
+  m_Controller: {fileID: 9100000, guid: 77cdca9201c959e4392fe76f103d1e78, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1574,6 +1582,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decfdc3d4bc0cdd41a56bd9eb1cfd1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2020656603 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 34b0895dfc863f742aa5075a4e691859,
+    type: 3}
+  m_PrefabInstance: {fileID: 2020656595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020656604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020656596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7467490d4c947f4d87f35eceb83cbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2020656605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020656596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a4b5a74ab04f6478c2c760125ef026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2020656603}
+  speed: 100
+  sprint: 150
+  sneak: 50
 --- !u!1001 &199065167589774594
 PrefabInstance:
   m_ObjectHideFlags: 0
