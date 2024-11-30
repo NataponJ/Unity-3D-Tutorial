@@ -7,16 +7,14 @@ public class PlayerAnimationController : MonoBehaviour
     Animator animator;
     int isWalkingHash;
     int isRunningHash;
-    int isIdleJumpHash;
-    //int isJumpHash;
+    //int isJumpingHash;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
-        isIdleJumpHash = Animator.StringToHash("isIdleJump");
-        //isJumpHash = Animator.StringToHash("isJump");
+        //isJumpingHash = Animator.StringToHash("isJumping");
     }
 
 
@@ -24,8 +22,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         bool isWaliking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
-        bool isIdleJump = animator.GetBool(isIdleJumpHash);
-        //bool isJump = animator.GetBool(isJumpHash);
+        //bool isJumping = animator.GetBool(isJumpingHash);
 
         bool forwardPressed = Input.GetKey("w");
         bool backPressed = Input.GetKey("s");
@@ -44,7 +41,8 @@ public class PlayerAnimationController : MonoBehaviour
             animator.SetBool(isWalkingHash, false);
         }
 
-        if (!isRunning && (runPressed && movingPressed)) {
+        if (!isRunning && (runPressed && movingPressed))
+        {
             animator.SetBool(isRunningHash, true);
         }
         if (isRunning && (!runPressed || !movingPressed))

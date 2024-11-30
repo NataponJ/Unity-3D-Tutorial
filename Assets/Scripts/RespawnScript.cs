@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class RespawnScript : MonoBehaviour
 {
-    private float threshold = -10.0f;
+    private float minthreshold = -10.0f;
+    private float maxthreshold = 100.0f;
+    private Vector3 defaultPosition;
+
+    private void Start()
+    {
+        defaultPosition = transform.position;
+    }
     private void FixedUpdate()
     {
-        if (transform.position.y < threshold)
+        if (transform.position.y < minthreshold || transform.position.y > maxthreshold)
         {
-            transform.position = new Vector3(0.0f, 0.0f, -7.0f);
+            transform.position = new Vector3(defaultPosition.x, defaultPosition.y, defaultPosition.z);
         }
     }
 }
