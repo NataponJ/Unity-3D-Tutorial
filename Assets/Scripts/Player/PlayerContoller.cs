@@ -1,11 +1,5 @@
 using Cinemachine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerContoller : MonoBehaviour
 {
@@ -13,7 +7,7 @@ public class PlayerContoller : MonoBehaviour
     public CinemachineFreeLook playerCamera;
     public float walkSpeed = 10f;
 
-    private float jumpHeight = 1f;
+    private float jumpHeight = 2f;
     private float gravityValue = -9.81f;
 
     private Vector3 playerVelocity;
@@ -31,6 +25,8 @@ public class PlayerContoller : MonoBehaviour
     private void Update()
     {
         Movement();
+        JumpMovement();
+        GravityValue();
     }
 
     void Movement()
@@ -38,29 +34,14 @@ public class PlayerContoller : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         float playerCameraEulerAnglesY = playerCamera.transform.eulerAngles.y;
-        Quaternion quaternionPlayerCameraEulerAnglesY = Quaternion.Euler(0, playerCameraEulerAnglesY, 0);
-        groundedPlayer = characterController.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-        }
-        
-        Vector3 movement = quaternionPlayerCameraEulerAnglesY * new Vector3(horizontal, 0, vertical);
+        Quaternion quaternionPlayerCameraEulerAnglesY = Quaternion.Euler(0.0f, playerCameraEulerAnglesY, 0.0f);
+        Vector3 movement = quaternionPlayerCameraEulerAnglesY * new Vector3(horizontal, 0.0f, vertical);
         float moveSpeed = MovementSpeed(walkSpeed);
         characterController.Move(movement * moveSpeed * Time.deltaTime);
-
         if (movement != Vector3.zero)
         {
             RotationPlayer(movement);
         }
-
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-        }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        characterController.Move(playerVelocity * Time.deltaTime);
     }
 
     void RotationPlayer(Vector3 movement)
@@ -87,5 +68,37 @@ public class PlayerContoller : MonoBehaviour
             moveSpeed = speed * 0.8f;
         }
         return moveSpeed;
+    }
+
+    void JumpMovement()
+    {
+        if (groundedPlayer && playerVelocity.y < 0.0f)
+        {
+            playerVelocity.y = 0.0f;
+        }
+        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -2f * gravityValue);
+            groundedPlayer = false;
+        }
+    }
+
+    void GravityValue()
+    {
+        playerVelocity.y += gravityValue * 2f * Time.deltaTime;
+        characterController.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            groundedPlayer = true;
+            Debug.Log("Grounded!");
+        } else
+        {
+            groundedPlayer = false;
+            Debug.Log("Not Grounded!");
+        }
     }
 }
