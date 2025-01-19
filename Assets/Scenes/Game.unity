@@ -6207,12 +6207,12 @@ PrefabInstance:
     - target: {fileID: 216371068897151849, guid: ca7e289518cfc104f8d3b601b436b6c3,
         type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 0.0000001
       objectReference: {fileID: 0}
     - target: {fileID: 216371068897151849, guid: ca7e289518cfc104f8d3b601b436b6c3,
         type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 374657397237159101, guid: ca7e289518cfc104f8d3b601b436b6c3,
         type: 3}

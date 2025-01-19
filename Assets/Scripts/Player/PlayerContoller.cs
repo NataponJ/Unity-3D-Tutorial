@@ -13,13 +13,10 @@ public class PlayerContoller : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
-    private Rigidbody rb;
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
-        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -94,11 +91,9 @@ public class PlayerContoller : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             groundedPlayer = true;
-            Debug.Log("Grounded!");
         } else
         {
             groundedPlayer = false;
-            Debug.Log("Not Grounded!");
         }
     }
 }
